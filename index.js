@@ -1,6 +1,5 @@
 import { createPublicClient, http } from "viem";
 import { mainnet } from "viem/chains";
-import { decodeEventLog } from "viem";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
@@ -30,7 +29,6 @@ const client = createPublicClient({
 	transport: http("https://rpc.ankr.com/eth"),
 });
 
-// Helper function to fetch Transfer events
 async function fetchTransferEvents(contractAddress, fromBlock, toBlock) {
 	return client.getLogs({
 		address: contractAddress,
@@ -40,7 +38,7 @@ async function fetchTransferEvents(contractAddress, fromBlock, toBlock) {
 	});
 }
 
-// Main function
+//Main function
 (async () => {
 	try {
 		const blockRange = 1000n;
